@@ -1,29 +1,50 @@
 import { motion, useMotionTemplate, useMotionValue } from 'motion/react';
-import { Code2, Layout, Zap } from 'lucide-react';
-import React, { MouseEvent } from 'react';
+import React, { MouseEvent, useRef } from 'react';
 
 const services = [
   {
-    title: 'Frontend Engineering',
-    description: 'Architecting scalable, performant, and accessible web applications using modern React ecosystems.',
-    icon: Code2,
-    colSpan: 'md:col-span-2',
+    id: '01',
+    title: 'DEFINE',
+    items: [
+      'BRAND STRATEGY',
+      'POSITIONING & MESSAGING',
+      'VISUAL IDENTITY SYSTEMS',
+      'BRAND GUIDELINES'
+    ]
   },
   {
-    title: 'UI/UX Design',
-    description: 'Crafting intuitive, cinematic interfaces that bridge the gap between aesthetics and functionality.',
-    icon: Layout,
-    colSpan: 'md:col-span-1',
+    id: '02',
+    title: 'DESIGN',
+    items: [
+      'ART DIRECTION',
+      'EDITORIAL LAYOUTS',
+      'TYPOGRAPHY SYSTEMS',
+      'PRINT & DIGITAL ASSETS'
+    ]
   },
   {
-    title: 'Performance Optimization',
-    description: 'Fine-tuning the digital experience. Eradicating jank, optimizing bundles, and achieving 100 Lighthouse scores.',
-    icon: Zap,
-    colSpan: 'md:col-span-3',
+    id: '03',
+    title: 'DEVELOP',
+    items: [
+      'FRONTEND ENGINEERING',
+      'CREATIVE CODING',
+      'WEBGL & 3D EXPERIENCES',
+      'PERFORMANCE OPTIMIZATION'
+    ]
   },
+  {
+    id: '04',
+    title: 'DEPLOY',
+    items: [
+      'CI/CD PIPELINES',
+      'CLOUD INFRASTRUCTURE',
+      'MONITORING & ANALYTICS',
+      'MAINTENANCE & SUPPORT'
+    ]
+  }
 ];
 
-const ServiceCard: React.FC<{ service: typeof services[0] }> = ({ service }) => {
+const ServiceCard: React.FC<{ service: typeof services[0]; index: number }> = ({ service, index }) => {
   const mouseX = useMotionValue(0);
   const mouseY = useMotionValue(0);
 
@@ -36,11 +57,11 @@ const ServiceCard: React.FC<{ service: typeof services[0] }> = ({ service }) => 
   return (
     <motion.div
       onMouseMove={handleMouseMove}
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-      className={`group relative rounded-3xl glass overflow-hidden ${service.colSpan}`}
+      initial={{ opacity: 0, x: 50 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true, margin: "-50px" }}
+      transition={{ duration: 0.8, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
+      className="group relative flex-shrink-0 w-[85vw] md:w-[600px] h-[500px] rounded-3xl glass overflow-hidden flex flex-col justify-between p-8 md:p-12"
     >
       <motion.div
         className="pointer-events-none absolute -inset-px rounded-3xl opacity-0 transition duration-300 group-hover:opacity-100"
@@ -54,38 +75,78 @@ const ServiceCard: React.FC<{ service: typeof services[0] }> = ({ service }) => 
           `,
         }}
       />
-      <div className="relative p-8 md:p-12 h-full flex flex-col justify-between z-10">
-        <div className="mb-12">
-          <div className="w-12 h-12 rounded-2xl bg-white/5 border border-white/10 flex items-center justify-center mb-6 group-hover:border-[#00ffcc]/30 transition-colors duration-500">
-            <service.icon className="w-6 h-6 text-[#00ffcc]" />
-          </div>
-          <h3 className="text-2xl font-semibold mb-4 text-white tracking-tight">{service.title}</h3>
-          <p className="text-slate-400 leading-relaxed max-w-md">{service.description}</p>
-        </div>
-        <div className="w-full h-[1px] bg-gradient-to-r from-white/10 to-transparent mt-auto" />
+      
+      {/* Background Number */}
+      <div className="absolute right-4 bottom-4 text-[240px] md:text-[320px] font-bold leading-none text-white/[0.03] select-none pointer-events-none transition-colors duration-500 group-hover:text-white/[0.05]">
+        {service.id.replace('0', '')}
+      </div>
+
+      <div className="relative z-10">
+        <h3 className="text-xl md:text-2xl font-bold tracking-widest text-white uppercase">{service.title}</h3>
+      </div>
+
+      <div className="relative z-10 mt-auto">
+        <ul className="space-y-3">
+          {service.items.map((item, i) => (
+            <li key={i} className="flex items-center text-xs md:text-sm font-semibold tracking-wider text-slate-300 uppercase">
+              <span className="w-1.5 h-1.5 rounded-full bg-[#00ffcc] mr-4 shadow-[0_0_8px_rgba(0,255,204,0.6)]"></span>
+              {item}
+            </li>
+          ))}
+        </ul>
       </div>
     </motion.div>
   );
 }
 
 export default function Services() {
+  const scrollRef = useRef<HTMLDivElement>(null);
+
   return (
-    <section id="services" className="py-32 px-6 relative z-20">
-      <div className="max-w-7xl mx-auto">
-        <motion.div 
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="mb-20"
+    <section id="services" className="py-32 relative z-20 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6 mb-24">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8">
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8 }}
+            className="lg:col-span-5"
+          >
+            <h2 className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter text-white">Services</h2>
+          </motion.div>
+          
+          <motion.div 
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="lg:col-span-7 lg:pl-12 flex flex-col justify-center"
+          >
+            <h3 className="text-3xl md:text-4xl lg:text-5xl font-medium tracking-tight text-white mb-12 leading-tight">
+              We work at the intersection of strategy, identity, and experience to shape brands with meaning.
+            </h3>
+            
+            <div className="max-w-xl">
+              <h4 className="text-sm font-bold tracking-widest text-white uppercase mb-6">From Insight to Identity.</h4>
+              <p className="text-slate-400 text-lg leading-relaxed">
+                We help brands define who they are, why they exist. At the intersection of strategy, branding, and design, we work with founders, studios, and companies to build identities that are clear, distinctive, and built to last.
+              </p>
+            </div>
+          </motion.div>
+        </div>
+      </div>
+      
+      {/* Horizontal Scroll Container */}
+      <div className="relative w-full overflow-hidden">
+        <div 
+          ref={scrollRef}
+          className="flex gap-6 px-6 md:px-12 overflow-x-auto pb-12 snap-x snap-mandatory [&::-webkit-scrollbar]:hidden [-ms-overflow-style:none] [scrollbar-width:none]"
         >
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tighter mb-4">The Immersion.</h2>
-          <p className="text-slate-400 text-lg max-w-xl">Elevating digital products through engineering excellence and obsessive attention to detail.</p>
-        </motion.div>
-        
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {services.map((service, index) => (
-            <ServiceCard key={index} service={service} />
+            <div key={service.id} className="snap-center">
+              <ServiceCard service={service} index={index} />
+            </div>
           ))}
         </div>
       </div>
