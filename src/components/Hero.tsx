@@ -1,85 +1,71 @@
-import { motion, useScroll, useTransform } from 'motion/react';
-import { MouseEvent, useRef, useState } from 'react';
+import { motion, useScroll } from 'motion/react';
+import { Globe } from 'lucide-react';
 import { ArrowDown } from 'lucide-react';
+import { Typewriter } from 'react-simple-typewriter';
 
 export default function Hero() {
-  const containerRef = useRef<HTMLDivElement>(null);
-  const { scrollYProgress } = useScroll({
-    target: containerRef,
-    offset: ["start start", "end start"]
-  });
-
-  const y = useTransform(scrollYProgress, [0, 1], ["0%", "50%"]);
-  const opacity = useTransform(scrollYProgress, [0, 0.8], [1, 0]);
-
-  const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
-
-  const handleMouseMove = (e: MouseEvent) => {
-    if (!containerRef.current) return;
-    const { clientX, clientY } = e;
-    const { innerWidth, innerHeight } = window;
-    const x = (clientX / innerWidth - 0.5) * 20;
-    const y = (clientY / innerHeight - 0.5) * 20;
-    setMousePosition({ x, y });
-  };
+  const { scrollYProgress } = useScroll();
 
   return (
-    <section 
-      ref={containerRef}
-      onMouseMove={handleMouseMove}
-      className="relative h-screen flex items-center justify-center overflow-hidden"
+    <section className="relative h-screen flex flex-col justify-between overflow-hidden bg-gradient-to-b from-[#050406] to-[#aaa9ac] pt-20">
+<div className="flex-1 flex items-start justify-center w-full px-4 pt-0">
+    <motion.h1 
+      initial={{ opacity: 0, scale: 0.95 }}
+      animate={{ opacity: 1, scale: 1 }}
+      transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
+      className="font-display font-black text-[15vw] leading-[0.95] tracking-[-0.01em] uppercase text-center flex flex-col items-center relative z-10"
     >
-      {/* Background Orb */}
-      <motion.div 
-        style={{ y, opacity }}
-        className="absolute inset-0 z-0 flex items-center justify-center pointer-events-none"
-      >
-        <div className="absolute w-[800px] h-[800px] bg-gradient-to-tr from-[#00ffcc]/10 to-purple-500/10 rounded-full blur-[120px] mix-blend-screen animate-pulse" style={{ animationDuration: '8s' }} />
-        <div className="absolute w-[600px] h-[600px] bg-blue-500/10 rounded-full blur-[100px] mix-blend-screen" />
-      </motion.div>
+      <span className="bg-clip-text text-transparent bg-gradient-to-b from-[#b4b3b5] to-[#605f62]">DIGITAL</span>
+      <span className="bg-clip-text text-transparent bg-gradient-to-b from-[#b4b3b5] to-[#605f62]">PRESENCE</span>
+      <div className="absolute top-[100%] right-[5%] flex items-center mt-2">
+        <span 
+          className="text-[5vw] font-mono font-medium text-white/70 uppercase tracking-[0.2em] select-none pointer-events-none w-[12ch] text-left inline-block"
+        >
+          <Typewriter
+            words={['DEFINED', 'DESIGNED', 'DEVELOPED', 'DEPLOYED']}
+            loop={0}
+            cursor
+            cursorStyle='_'
+            typeSpeed={50}
+            deleteSpeed={30}
+            delaySpeed={2000}
+          />
+        </span>
+      </div>
+    </motion.h1>
+  </div>
 
       <motion.div 
-        style={{ 
-          x: mousePosition.x * -1, 
-          y: mousePosition.y * -1,
-          opacity 
-        }}
-        className="relative z-10 text-center px-6 max-w-5xl mx-auto"
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 1, delay: 0.5 }}
+        className="w-full px-6 md:px-12 pb-8 flex flex-col md:flex-row justify-between items-end gap-8"
       >
-        <motion.h1 
-          initial={{ opacity: 0, y: 40 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
-          className="text-6xl md:text-8xl lg:text-9xl font-bold tracking-tighter text-gradient text-glow mb-6"
-        >
-          Digital Presence.<br />Defined.
-        </motion.h1>
-        
-        <motion.p 
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.2, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
-          className="text-lg md:text-2xl text-slate-400 font-light tracking-wide"
-        >
-          Engineered by Benjamin Hill.
-        </motion.p>
+        <div className="text-xs md:text-sm font-mono text-white/70 uppercase tracking-widest leading-relaxed">
+          <p>ENGINEERED BY HILL STACK STUDIO</p>
+          <p className="flex items-center gap-2">
+            US <Globe className="w-3 h-3" /> {new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', timeZoneName: 'short' })}
+          </p>
+        </div>
       </motion.div>
 
       <motion.div 
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 1, delay: 1 }}
-        style={{ opacity }}
-        className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 text-slate-500"
+        style={{ opacity: 1 }}
+        className="absolute bottom-12 left-1/2 -translate-x-1/2 text-white/70"
       >
-        <span className="text-xs uppercase tracking-widest font-medium">Scroll to explore</span>
         <motion.div
           animate={{ y: [0, 8, 0] }}
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+          className="flex flex-col items-center gap-3"
         >
+          <span className="text-xs uppercase tracking-widest font-medium">Scroll to explore</span>
           <ArrowDown className="w-4 h-4" />
         </motion.div>
       </motion.div>
     </section>
   );
 }
+

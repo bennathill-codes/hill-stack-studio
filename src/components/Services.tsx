@@ -1,83 +1,60 @@
-import { motion, useMotionTemplate, useMotionValue } from 'motion/react';
-import React, { MouseEvent, useRef } from 'react';
+import { motion } from 'motion/react';
+import React from 'react';
 
 const services = [
   {
     id: '01',
     title: 'DEFINE',
     items: [
-      'BRAND STRATEGY',
-      'POSITIONING & MESSAGING',
-      'VISUAL IDENTITY SYSTEMS',
-      'BRAND GUIDELINES'
+      'MARKET ANALYSIS',
+      'DATA-DRIVEN STRATEGY',
+      'IMPLEMENTATION STRATEGY',
+      'SITE ARCHITECTURE'
     ]
   },
   {
     id: '02',
     title: 'DESIGN',
     items: [
-      'ART DIRECTION',
-      'EDITORIAL LAYOUTS',
-      'TYPOGRAPHY SYSTEMS',
-      'PRINT & DIGITAL ASSETS'
+      'DIGITAL IDENTITY',
+      'WEB PAGE PROTOTYPING',
+      'ADAPTIVE USER INTERFACE',
+      'USER EXPERIENCE WORKFLOWS'
     ]
   },
   {
     id: '03',
     title: 'DEVELOP',
     items: [
-      'FRONTEND ENGINEERING',
-      'CREATIVE CODING',
-      'WEBGL & 3D EXPERIENCES',
-      'PERFORMANCE OPTIMIZATION'
+      'RESPONSIVE DESIGN',
+      'FULL STACK DEVELOPMENT',
+      'SEARCH ENGINE OPTIMIZATION',
+      'PRODUCTION READY BUILD'
     ]
   },
   {
     id: '04',
     title: 'DEPLOY',
     items: [
-      'CI/CD PIPELINES',
-      'CLOUD INFRASTRUCTURE',
       'MONITORING & ANALYTICS',
-      'MAINTENANCE & SUPPORT'
+      'MAINTENANCE & SUPPORT',
+      'CI/CD PIPELINES',
+      'COMPREHENSIVE TEST SUITE'
     ]
   }
 ];
 
 const ServiceCard: React.FC<{ service: typeof services[0]; index: number }> = ({ service, index }) => {
-  const mouseX = useMotionValue(0);
-  const mouseY = useMotionValue(0);
-
-  function handleMouseMove({ currentTarget, clientX, clientY }: MouseEvent) {
-    const { left, top } = currentTarget.getBoundingClientRect();
-    mouseX.set(clientX - left);
-    mouseY.set(clientY - top);
-  }
-
   return (
     <motion.div
-      onMouseMove={handleMouseMove}
       initial={{ opacity: 0, x: 50 }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.8, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-      className="group relative flex-shrink-0 w-[85vw] md:w-[600px] h-[500px] rounded-3xl glass overflow-hidden flex flex-col justify-between p-8 md:p-12"
+      className="group relative flex-shrink-0 w-[85vw] md:w-[600px] h-[500px] rounded-sm glass overflow-hidden flex flex-col justify-between p-8 md:p-12 bg-[#222222]"
     >
-      <motion.div
-        className="pointer-events-none absolute -inset-px rounded-3xl opacity-0 transition duration-300 group-hover:opacity-100"
-        style={{
-          background: useMotionTemplate`
-            radial-gradient(
-              650px circle at ${mouseX}px ${mouseY}px,
-              rgba(0, 255, 204, 0.1),
-              transparent 80%
-            )
-          `,
-        }}
-      />
-      
       {/* Background Number */}
-      <div className="absolute right-4 bottom-4 text-[240px] md:text-[320px] font-bold leading-none text-white/[0.03] select-none pointer-events-none transition-colors duration-500 group-hover:text-white/[0.05]">
+      <div className="absolute right-4 bottom-4 text-[240px] md:text-[320px] font-display font-bold leading-none text-white/[0.03] select-none pointer-events-none transition-colors duration-500 group-hover:text-white/[0.05]">
         {service.id.replace('0', '')}
       </div>
 
@@ -88,8 +65,8 @@ const ServiceCard: React.FC<{ service: typeof services[0]; index: number }> = ({
       <div className="relative z-10 mt-auto">
         <ul className="space-y-3">
           {service.items.map((item, i) => (
-            <li key={i} className="flex items-center text-xs md:text-sm font-semibold tracking-wider text-slate-300 uppercase">
-              <span className="w-1.5 h-1.5 rounded-full bg-[#00ffcc] mr-4 shadow-[0_0_8px_rgba(0,255,204,0.6)]"></span>
+            <li key={i} className="flex items-center text-xs md:text-sm font-semibold tracking-wider text-white/70 uppercase">
+              <span className="w-1 h-1 rounded-full bg-white/50 mr-4"></span>
               {item}
             </li>
           ))}
@@ -100,10 +77,10 @@ const ServiceCard: React.FC<{ service: typeof services[0]; index: number }> = ({
 }
 
 export default function Services() {
-  const scrollRef = useRef<HTMLDivElement>(null);
+  const scrollRef = React.useRef<HTMLDivElement>(null);
 
   return (
-    <section id="services" className="py-32 relative z-20 overflow-hidden">
+    <section id="services" className="py-32 relative z-20 overflow-hidden bg-[#111111]">
       <div className="max-w-7xl mx-auto px-6 mb-24">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8">
           <motion.div 
@@ -129,7 +106,7 @@ export default function Services() {
             
             <div className="max-w-xl">
               <h4 className="text-sm font-bold tracking-widest text-white uppercase mb-6">From Insight to Identity.</h4>
-              <p className="text-slate-400 text-lg leading-relaxed">
+              <p className="text-white/60 text-lg leading-relaxed">
                 We help brands define who they are, why they exist. At the intersection of strategy, branding, and design, we work with founders, studios, and companies to build identities that are clear, distinctive, and built to last.
               </p>
             </div>

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
+import logo from '../assets/logo.svg';
 
 export default function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -8,7 +9,7 @@ export default function Header() {
   const headerBackground = useTransform(
     scrollY,
     [0, 50],
-    ['rgba(5, 5, 5, 0)', 'rgba(5, 5, 5, 0.8)']
+    ['rgba(17, 17, 17, 0)', 'rgba(17, 17, 17, 0.8)']
   );
   
   const headerBorder = useTransform(
@@ -35,33 +36,48 @@ export default function Header() {
       }}
       className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md transition-all duration-500"
     >
-      <div className="max-w-7xl mx-auto px-6 h-20 flex items-center justify-between">
+      <div className="w-full px-6 h-20 flex items-center justify-between">
         <motion.div 
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
           className="flex items-center gap-2 group cursor-pointer"
         >
-          <span className="font-semibold tracking-tight text-lg">Hill Stack Studio</span>
-          <span className="w-1.5 h-1.5 rounded-full bg-[#00ffcc] shadow-[0_0_10px_#00ffcc] group-hover:shadow-[0_0_15px_#00ffcc] transition-shadow duration-300"></span>
+          <img src={logo} alt="Hill Stack Studio Logo" className="h-6 w-auto" />
         </motion.div>
         
-        <motion.nav
+        <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 w-full max-w-xl px-4">
+          <motion.nav
+            initial={{ opacity: 0, y: -20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
+            className="flex items-center justify-between w-full text-xs font-semibold tracking-widest text-white/60 uppercase"
+          >
+            {['About', 'Services', 'Work'].map((item) => (
+              <a 
+                key={item} 
+                href={`#${item.toLowerCase()}`}
+                className="hover:text-white transition-colors duration-300"
+              >
+                + {item}
+              </a>
+            ))}
+          </motion.nav>
+        </div>
+
+        <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-          className="hidden md:flex items-center gap-8 text-sm font-medium text-slate-400"
+          transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
         >
-          {['Services', 'Works', 'Contact'].map((item) => (
-            <a 
-              key={item} 
-              href={`#${item.toLowerCase()}`}
-              className="hover:text-white transition-colors duration-300"
-            >
-              {item}
-            </a>
-          ))}
-        </motion.nav>
+          <a 
+            href="#contact"
+            className="flex items-center gap-2 px-4 py-2 rounded-full border border-white/20 text-xs font-semibold tracking-widest text-white/80 uppercase hover:bg-white hover:text-black transition-colors duration-300 group"
+          >
+            <span className="w-1.5 h-1.5 rounded-full bg-[#01FFCC]"></span>
+            Contact
+          </a>
+        </motion.div>
       </div>
     </motion.header>
   );

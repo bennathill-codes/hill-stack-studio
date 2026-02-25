@@ -30,7 +30,7 @@ const works = [
 
 export default function Works() {
   return (
-    <section id="works" className="py-32 px-6 relative z-20">
+    <section id="works" className="py-32 px-6 relative z-20 bg-[#111111]">
       <div className="max-w-7xl mx-auto">
         <motion.div 
           initial={{ opacity: 0, y: 20 }}
@@ -39,8 +39,8 @@ export default function Works() {
           transition={{ duration: 0.8 }}
           className="mb-24"
         >
-          <h2 className="text-4xl md:text-5xl font-bold tracking-tighter mb-4">Recent Works.</h2>
-          <p className="text-slate-400 text-lg max-w-xl">A curated selection of digital experiences engineered for impact.</p>
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tighter mb-4 text-white">Recent Works.</h2>
+          <p className="text-white/60 text-lg max-w-xl">A curated selection of digital experiences engineered for impact.</p>
         </motion.div>
 
         <div className="flex flex-col gap-32">
@@ -56,7 +56,7 @@ export default function Works() {
               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
               className={`group relative block w-full md:w-[80%] ${work.align === 'right' ? 'md:ml-auto' : ''}`}
             >
-              <div className="relative aspect-[16/9] overflow-hidden rounded-3xl glass">
+              <div className="relative aspect-[16/9] overflow-hidden rounded-sm glass">
                 <motion.img
                   src={work.image}
                   alt={work.title}
@@ -78,7 +78,7 @@ export default function Works() {
                         <ArrowUpRight className="w-6 h-6" />
                       </div>
                     </div>
-                    <p className="text-[#00ffcc] font-mono text-sm tracking-wide">{work.tech}</p>
+                    <p className="text-white/70 font-mono text-sm tracking-wide">{work.tech}</p>
                   </motion.div>
                 </div>
               </div>
