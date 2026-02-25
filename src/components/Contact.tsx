@@ -19,15 +19,15 @@ export default function Contact() {
           transition={{ duration: 0.8 }}
           className="text-center mb-20"
         >
-          <h2 className="text-5xl md:text-7xl font-bold tracking-tighter mb-6 text-gradient">
+          <h2 className="text-[10vw] md:text-[5vw] font-bold tracking-tighter mb-[6vw] md:mb-[2vw] text-gradient">
             Define your digital presence.
           </h2>
-          <p className="text-xl text-white/60 font-light">
+          <p className="text-[5vw] md:text-[1.5vw] text-white/60 font-light">
             Let's build your competitive edge.
           </p>
         </motion.div>
 
-        <motion.form 
+        <motion.form
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -36,8 +36,8 @@ export default function Contact() {
           onSubmit={(e) => e.preventDefault()}
         >
           <div className="relative group">
-            <input 
-              type="text" 
+            <input
+              type="text"
               id="name"
               required
               className="w-full bg-transparent border-b border-white/20 py-4 text-xl text-white focus:outline-none focus:border-white transition-colors peer placeholder-transparent"
@@ -47,10 +47,10 @@ export default function Contact() {
               What's your name?
             </label>
           </div>
-          
+
           <div className="relative group">
-            <input 
-              type="email" 
+            <input
+              type="email"
               id="email"
               required
               className="w-full bg-transparent border-b border-white/20 py-4 text-xl text-white focus:outline-none focus:border-white transition-colors peer placeholder-transparent"
@@ -62,7 +62,7 @@ export default function Contact() {
           </div>
 
           <div className="relative group">
-            <textarea 
+            <textarea
               id="message"
               required
               rows={3}
@@ -81,12 +81,12 @@ export default function Contact() {
         </motion.form>
 
         {/* Footer */}
-        <div className="flex flex-col md:flex-row items-center justify-between pt-8 border-t border-white/10 text-sm text-white/50">
+        <div className="flex flex-col md:flex-row items-center justify-between pt-[8vw] md:pt-[2vw] border-t border-white/10 text-[3vw] md:text-[1vw] text-white/50">
           <p>© {new Date().getFullYear()} Hill Stack Studio. Engineered by Benjamin Hill.</p>
-          <div className="flex items-center gap-6 mt-4 md:mt-0">
-            <a href="#" className="hover:text-white transition-colors"><Github className="w-5 h-5" /></a>
-            <a href="#" className="hover:text-white transition-colors"><Linkedin className="w-5 h-5" /></a>
-            <a href="#" className="hover:text-white transition-colors"><Twitter className="w-5 h-5" /></a>
+          <div className="flex items-center gap-[6vw] md:gap-[1.5vw] mt-[4vw] md:mt-0">
+            <a href="#" className="hover:text-white transition-colors"><Github className="w-[5vw] h-[5vw] md:w-[1.5vw] md:h-[1.5vw]" /></a>
+            <a href="#" className="hover:text-white transition-colors"><Linkedin className="w-[5vw] h-[5vw] md:w-[1.5vw] md:h-[1.5vw]" /></a>
+            <a href="#" className="hover:text-white transition-colors"><Twitter className="w-[5vw] h-[5vw] md:w-[1.5vw] md:h-[1.5vw]" /></a>
           </div>
         </div>
       </div>

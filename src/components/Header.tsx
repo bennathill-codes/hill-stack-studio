@@ -1,65 +1,43 @@
-import { useEffect, useState } from 'react';
 import { motion, useScroll, useTransform } from 'motion/react';
 import logo from '../assets/logo.svg';
 
 export default function Header() {
-  const [isScrolled, setIsScrolled] = useState(false);
   const { scrollY } = useScroll();
-  
-  const headerBackground = useTransform(
-    scrollY,
-    [0, 50],
-    ['rgba(17, 17, 17, 0)', 'rgba(17, 17, 17, 0.8)']
-  );
-  
-  const headerBorder = useTransform(
-    scrollY,
-    [0, 50],
-    ['rgba(255, 255, 255, 0)', 'rgba(255, 255, 255, 0.05)']
-  );
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener('scroll', handleScroll);
-    return () => window.removeEventListener('scroll', handleScroll);
-  }, []);
+  const headerY = useTransform(scrollY, [0, 300], [0, -100]);
+  const headerOpacity = useTransform(scrollY, [0, 300], [1, 0]);
 
   return (
-    <motion.header 
-      style={{ 
-        backgroundColor: headerBackground,
-        borderBottomColor: headerBorder,
-        borderBottomWidth: '1px',
-        borderBottomStyle: 'solid'
+    <motion.header
+      style={{
+        y: headerY,
+        opacity: headerOpacity
       }}
-      className="fixed top-0 left-0 right-0 z-50 backdrop-blur-md transition-all duration-500"
+      className="absolute top-0 left-0 right-0 z-50"
     >
       <div className="w-full px-6 h-20 flex items-center justify-between">
-        <motion.div 
+        <motion.div
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="flex items-center gap-2 group cursor-pointer"
+          className="flex items-center gap-2 group cursor-pointer w-6"
         >
-          <img src={logo} alt="Hill Stack Studio Logo" className="h-6 w-auto" />
         </motion.div>
-        
-        <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 w-full max-w-xl px-4">
+
+        <div className="hidden md:flex absolute left-1/2 -translate-x-1/2 w-[50vw]">
           <motion.nav
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="flex items-center justify-between w-full text-xs font-semibold tracking-widest text-white/60 uppercase"
+            className="flex items-center justify-between w-full text-[1vw] font-semibold tracking-widest text-white/40 mix-blend-overlay uppercase"
           >
             {['About', 'Services', 'Work'].map((item) => (
-              <a 
-                key={item} 
+              <a
+                key={item}
                 href={`#${item.toLowerCase()}`}
-                className="hover:text-white transition-colors duration-300"
+                className="relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[1px] after:bg-white/70 after:origin-center after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-500 after:ease-[cubic-bezier(0.16,1,0.3,1)]"
               >
-                + {item}
+                {item}
               </a>
             ))}
           </motion.nav>
@@ -70,12 +48,15 @@ export default function Header() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
         >
-          <a 
+          <a
             href="#contact"
-            className="flex items-center gap-2 px-4 py-2 rounded-full border border-white/20 text-xs font-semibold tracking-widest text-white/80 uppercase hover:bg-white hover:text-black transition-colors duration-300 group"
+            className="flex items-center gap-2 md:gap-[0.6vw] px-4 py-2 md:px-[1.2vw] md:py-[0.4vw] rounded-full border border-white/20 bg-white/5 backdrop-blur-md text-[3vw] md:text-[1vw] font-semibold tracking-widest text-white/70 uppercase hover:bg-white/10 hover:text-white transition-all duration-300 group shadow-[0_0_15px_rgba(255,255,255,0.05)]"
           >
-            <span className="w-1.5 h-1.5 rounded-full bg-[#01FFCC]"></span>
-            Contact
+            <span className="relative flex w-1.5 h-1.5 md:w-[0.4vw] md:h-[0.4vw]">
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#01FFCC] opacity-75"></span>
+              <span className="relative inline-flex rounded-full w-1.5 h-1.5 md:w-[0.4vw] md:h-[0.4vw] bg-[#01FFCC]"></span>
+            </span>
+            <span className="text-[10px] md:text-[0.8vw] text-white/70 group-hover:text-white transition-colors duration-300 font-semibold tracking-widest">CONTACT</span>
           </a>
         </motion.div>
       </div>
