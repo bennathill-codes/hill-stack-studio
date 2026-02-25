@@ -89,8 +89,8 @@ export default function Hero() {
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           className="flex flex-col items-center gap-[1.5vw] md:gap-[0.8vw]"
         >
-          <span className="text-[2.5vw] md:text-[0.8vw] uppercase tracking-widest font-medium">Scroll to explore</span>
-          <ArrowDown className="w-[4vw] h-[4vw] md:w-[1.2vw] md:h-[1.2vw]" />
+          <span className="text-[2vw] md:text-[0.8vw] uppercase tracking-widest font-medium">Scroll to explore</span>
+          <ArrowDown className="w-[3vw] h-[3vw] md:w-[1vw] md:h-[1vw]" />
         </motion.div>
       </motion.div>
     </section>

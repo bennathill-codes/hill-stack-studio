@@ -1,5 +1,5 @@
-import { motion } from 'motion/react';
-import React from 'react';
+import { motion, useScroll, useTransform } from 'motion/react';
+import React, { useRef } from 'react';
 
 const services = [
   {
@@ -45,18 +45,30 @@ const services = [
 ];
 
 const ServiceCard: React.FC<{ service: typeof services[0]; index: number }> = ({ service, index }) => {
+  const cardRef = useRef<HTMLDivElement>(null);
+  const { scrollYProgress } = useScroll({
+    target: cardRef,
+    offset: ["start end", "end start"]
+  });
+
+  const y = useTransform(scrollYProgress, [0, 1], ["-10%", "10%"]);
+
   return (
     <motion.div
+      ref={cardRef}
       initial={{ opacity: 0, x: 50 }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.8, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-      className="group relative flex-shrink-0 w-[85vw] md:w-[40vw] h-[100vw] md:h-[35vw] rounded-sm glass overflow-hidden flex flex-col justify-between p-[6vw] md:p-[3vw] bg-[#222222]"
+      className="group relative flex-shrink-0 w-[85vw] md:w-[40vw] h-[100vw] md:h-[35vw] rounded-sm glass overflow-hidden flex flex-col justify-between p-[6vw] md:p-[3vw] bg-white/5 backdrop-blur-xl border border-white/10"
     >
       {/* Background Number */}
-      <div className="absolute right-[4vw] bottom-[4vw] text-[40vw] md:text-[20vw] font-display font-bold leading-none text-white/[0.03] select-none pointer-events-none transition-colors duration-500 group-hover:text-white/[0.05]">
+      <motion.div
+        style={{ y }}
+        className="absolute right-[4vw] bottom-[4vw] text-[40vw] md:text-[20vw] font-display font-bold leading-none text-white/[0.03] select-none pointer-events-none transition-colors duration-500 group-hover:text-white/[0.05]"
+      >
         {service.id.replace('0', '')}
-      </div>
+      </motion.div>
 
       <div className="relative z-10">
         <h3 className="text-[5vw] md:text-[2vw] font-bold tracking-widest text-white uppercase">{service.title}</h3>
@@ -65,7 +77,7 @@ const ServiceCard: React.FC<{ service: typeof services[0]; index: number }> = ({
       <div className="relative z-10 mt-auto">
         <ul className="space-y-[2vw] md:space-y-[1vw]">
           {service.items.map((item, i) => (
-            <li key={i} className="flex items-center text-[3vw] md:text-[1vw] font-semibold tracking-wider text-white/70 uppercase">
+            <li key={i} className="flex items-center text-[3vw] md:text-[1vw] font-mono tracking-wider text-white/70 uppercase">
               <span className="w-[1vw] h-[1vw] md:w-[0.4vw] md:h-[0.4vw] rounded-full bg-white/50 mr-[3vw] md:mr-[1vw]"></span>
               {item}
             </li>

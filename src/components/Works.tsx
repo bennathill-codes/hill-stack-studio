@@ -31,29 +31,37 @@ const works = [
 export default function Works() {
   return (
     <section id="works" className="py-32 px-6 relative z-20 bg-[#111111]">
+      <svg className="hidden">
+        <filter id="liquid-hover">
+          <feTurbulence type="fractalNoise" baseFrequency="0.015 0.05" numOctaves="1" result="warp">
+            <animate attributeName="baseFrequency" dur="5s" values="0.015 0.05;0.02 0.06;0.015 0.05" repeatCount="indefinite" />
+          </feTurbulence>
+          <feDisplacementMap xChannelSelector="R" yChannelSelector="G" scale="20" in="SourceGraphic" in2="warp" />
+        </filter>
+      </svg>
       <div className="max-w-7xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="mb-[12vw] md:mb-[6vw]"
+          className="mb-24"
         >
-          <h2 className="text-[8vw] md:text-[4vw] font-bold tracking-tighter mb-[4vw] md:mb-[1vw] text-white">Recent Works.</h2>
-          <p className="text-white/60 text-[4vw] md:text-[1.2vw] max-w-xl">A curated selection of digital experiences engineered for impact.</p>
+          <h2 className="text-4xl md:text-5xl font-bold tracking-tighter mb-4 text-white">Recent Works.</h2>
+          <p className="text-white/60 text-lg max-w-xl">A curated selection of digital experiences engineered for impact.</p>
         </motion.div>
 
-        <div className="flex flex-col gap-[16vw] md:gap-[8vw]">
+        <div className="flex flex-col gap-32">
           {works.map((work, index) => (
             <motion.a
               key={work.id}
               href={work.link}
               target="_blank"
               rel="noopener noreferrer"
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, y: 60, scale: 0.95, filter: "blur(10px)" }}
+              whileInView={{ opacity: 1, y: 0, scale: 1, filter: "blur(0px)" }}
               viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+              transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
               className={`group relative block w-full md:w-[80%] ${work.align === 'right' ? 'md:ml-auto' : ''}`}
             >
               <div className="relative aspect-[16/9] overflow-hidden rounded-sm glass">
@@ -61,24 +69,33 @@ export default function Works() {
                   src={work.image}
                   alt={work.title}
                   referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
+                  className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
+                />
+
+                {/* Liquid Hover Image */}
+                <motion.img
+                  src={work.image}
+                  alt={`${work.title} liquid effect`}
+                  referrerPolicy="no-referrer"
+                  className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
+                  style={{ filter: 'url(#liquid-hover)' }}
                 />
 
                 {/* Dark Overlay */}
-                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-[6vw] md:p-[3vw]">
+                <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-8 md:p-12">
                   <motion.div
                     initial={{ y: 20, opacity: 0 }}
                     whileHover={{ y: 0, opacity: 1 }}
                     transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                    className="translate-y-[2vw] group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
+                    className="translate-y-4 group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
                   >
-                    <div className="flex items-center justify-between mb-[2vw] md:mb-[0.5vw]">
-                      <h3 className="text-[6vw] md:text-[3vw] font-bold text-white tracking-tight">{work.title}</h3>
-                      <div className="w-[10vw] h-[10vw] md:w-[3vw] md:h-[3vw] rounded-full bg-white/10 flex items-center justify-center backdrop-blur-md border border-white/20 group-hover:bg-white group-hover:text-black transition-colors duration-300">
-                        <ArrowUpRight className="w-[5vw] h-[5vw] md:w-[1.5vw] md:h-[1.5vw]" />
+                    <div className="flex items-center justify-between mb-2">
+                      <h3 className="text-3xl md:text-4xl font-bold text-white tracking-tight">{work.title}</h3>
+                      <div className="w-12 h-12 rounded-full bg-white/10 flex items-center justify-center backdrop-blur-md border border-white/20 group-hover:bg-white group-hover:text-black transition-colors duration-300">
+                        <ArrowUpRight className="w-6 h-6" />
                       </div>
                     </div>
-                    <p className="text-white/70 font-mono text-[3vw] md:text-[1vw] tracking-wide">{work.tech}</p>
+                    <p className="text-white/70 font-mono text-sm tracking-wide">{work.tech}</p>
                   </motion.div>
                 </div>
               </div>
