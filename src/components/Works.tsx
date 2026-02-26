@@ -30,7 +30,7 @@ const works = [
 
 export default function Works() {
   return (
-    <section id="works" className="py-32 px-6 relative z-20 bg-[#111111]">
+    <section id="works" className="py-32 px-6 relative z-20">
       <svg className="hidden">
         <filter id="liquid-hover">
           <feTurbulence type="fractalNoise" baseFrequency="0.015 0.05" numOctaves="1" result="warp">

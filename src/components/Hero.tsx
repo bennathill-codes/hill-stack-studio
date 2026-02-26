@@ -2,7 +2,6 @@ import { motion, useScroll, useTransform } from 'motion/react';
 import { Globe } from 'lucide-react';
 import { ArrowDown } from 'lucide-react';
 import { Typewriter } from 'react-simple-typewriter';
-import oceanLoop from '../assets/ocean-loop.mp4';
 import logo from '../assets/logo.svg';
 
 export default function Hero() {
@@ -12,20 +11,6 @@ export default function Hero() {
 
   return (
     <section className="relative h-screen flex flex-col justify-between overflow-hidden pt-20">
-      {/* Background Video */}
-      <video
-        autoPlay
-        loop
-        muted
-        playsInline
-        className="absolute inset-0 w-full h-full object-cover z-0"
-      >
-        <source src={oceanLoop} type="video/mp4" />
-      </video>
-
-      {/* Gradient Overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-[#050406]/80 to-[#aaa9ac]/80 z-0" />
-
       <div className="flex-1 flex items-center justify-center w-full px-4 pt-0 relative z-10">
         <motion.div
           style={{ scale: textScale, opacity: textOpacity }}
@@ -39,14 +24,14 @@ export default function Hero() {
             className="font-display font-black text-[14vw] leading-[0.95] tracking-[-0.01em] uppercase text-center flex flex-col items-center relative z-10"
           >
             <div className="flex flex-col items-center mb-[4vw] md:mb-[2vw]">
-              <img src={logo} alt="Hill Stack Studio Logo" className="h-[4vw] md:h-[1.5vw] w-auto mb-[2vw] md:mb-[1vw] opacity-40 mix-blend-overlay" />
+              <img src={logo} alt="Hill Stack Studio Logo" className="h-[4vw] md:h-[1.5vw] w-auto mb-[2vw] md:mb-[1vw] opacity-90 mix-blend-overlay" />
               <span className="text-[2.5vw] md:text-[0.8vw] font-mono font-semibold tracking-[0.3em] text-white/40 mix-blend-overlay uppercase">Hill Stack Studio</span>
             </div>
-            <span className="bg-gradient-to-b from-white/0 to-white/20 bg-clip-text text-transparent mix-blend-overlay drop-shadow-2xl">DIGITAL</span>
-            <span className="text-white/20 to-white/90 mix-blend-overlay drop-shadow-2xl">PRESENCE</span>
+            <span className="bg-gradient-to-b from-white/0 to-white/100 bg-clip-text text-transparent mix-blend-overlay drop-shadow-2xl">DIGITAL</span>
+            <span className=" bg-gradient-to-b from-white/100 to-white/0 bg-clip-text text-transparent mix-blend-overlay drop-shadow-2xl">PRESENCE</span>
             <div className="absolute top-[100%] right-0 flex items-center mt-4">
               <span
-                className="text-[3.5vw] font-mono font-medium text-white/70 uppercase tracking-[0.2em] select-none pointer-events-none w-[12ch] text-left inline-block"
+                className="text-[3vw] font-mono font-medium text-white/70 uppercase tracking-[0.2em] select-none pointer-events-none w-[12ch] text-left inline-block"
               >
                 <Typewriter
                   words={['DEFINED', 'DESIGNED', 'DEVELOPED', 'DEPLOYED']}
@@ -89,11 +74,10 @@ export default function Hero() {
           transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
           className="flex flex-col items-center gap-[1.5vw] md:gap-[0.8vw]"
         >
-          <span className="text-[2vw] md:text-[0.8vw] uppercase tracking-widest font-medium">Scroll to explore</span>
-          <ArrowDown className="w-[3vw] h-[3vw] md:w-[1vw] md:h-[1vw]" />
+          <span className="text-[1.5vw] md:text-[0.8vw] uppercase tracking-widest font-medium">Scroll to explore</span>
+          <ArrowDown className="w-[3vw] h-[4vw] md:w-[1.2vw] md:h-[1.2vw]" />
         </motion.div>
       </motion.div>
     </section>
   );
 }
-

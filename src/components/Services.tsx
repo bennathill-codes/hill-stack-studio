@@ -60,7 +60,7 @@ const ServiceCard: React.FC<{ service: typeof services[0]; index: number }> = ({
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.8, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-      className="group relative flex-shrink-0 w-[85vw] md:w-[40vw] h-[100vw] md:h-[35vw] rounded-sm glass overflow-hidden flex flex-col justify-between p-[6vw] md:p-[3vw] bg-white/5 backdrop-blur-xl border border-white/10"
+      className="group relative flex-shrink-0 w-[85vw] md:w-[40vw] h-[100vw] md:h-[35vw] rounded-sm glass overflow-hidden flex flex-col justify-between p-[6vw] md:p-[3vw] bg-white/5 backdrop-blur-2xl border border-white/10"
     >
       {/* Background Number */}
       <motion.div
@@ -92,7 +92,7 @@ export default function Services() {
   const scrollRef = React.useRef<HTMLDivElement>(null);
 
   return (
-    <section id="services" className="py-32 relative z-20 overflow-hidden bg-[#111111]">
+    <section id="services" className="py-32 relative z-20 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6 mb-24">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8">
           <motion.div
