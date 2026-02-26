@@ -1,3 +1,8 @@
+/**
+ * @license
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
 import Header from './components/Header';
 import Hero from './components/Hero';
 import Services from './components/Services';
@@ -51,9 +56,22 @@ export default function App() {
         <div className="relative z-10">
           <Header />
           <Hero />
-          <Services />
-          <Works />
-          <Contact />
+          <div className="relative">
+            {/* Fading Frosted Glass Background */}
+            <div
+              className="absolute inset-0 pointer-events-none bg-gradient-to-b from-transparent via-white/5 to-white/10 backdrop-blur-md"
+              style={{
+                maskImage: 'linear-gradient(to bottom, transparent 10%, black 50%, black 100%)',
+                WebkitMaskImage: 'linear-gradient(to bottom, transparent 0%, black 50%, black 100%)'
+              }}
+            />
+            {/* Content */}
+            <div className="relative z-10">
+              <Services />
+              <Works />
+              <Contact />
+            </div>
+          </div>
         </div>
       </main>
     </ReactLenis>
