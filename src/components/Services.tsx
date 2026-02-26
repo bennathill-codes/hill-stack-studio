@@ -60,7 +60,7 @@ const ServiceCard: React.FC<{ service: typeof services[0]; index: number }> = ({
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: true, margin: "-50px" }}
       transition={{ duration: 0.8, delay: index * 0.1, ease: [0.16, 1, 0.3, 1] }}
-      className="group relative flex-shrink-0 w-[85vw] md:w-[40vw] h-[100vw] md:h-[35vw] rounded-sm glass overflow-hidden flex flex-col justify-between p-[6vw] md:p-[3vw] bg-white/5 backdrop-blur-2xl border border-white/10"
+      className="group relative flex-shrink-0 w-[85vw] md:w-[40vw] h-[100vw] md:h-[35vw] rounded-sm overflow-hidden flex flex-col justify-between p-[6vw] md:p-[3vw] bg-white/5 backdrop-blur-md border border-white/20 shadow-[0_0_15px_rgba(255,255,255,0.05)] opacity-75 hover:opacity-100 transition-opacity duration-300"
     >
       {/* Background Number */}
       <motion.div

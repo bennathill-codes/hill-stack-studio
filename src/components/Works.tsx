@@ -64,7 +64,7 @@ export default function Works() {
               transition={{ duration: 1.2, ease: [0.16, 1, 0.3, 1] }}
               className={`group relative block w-full md:w-[80%] ${work.align === 'right' ? 'md:ml-auto' : ''}`}
             >
-              <div className="relative aspect-[16/9] overflow-hidden rounded-sm glass">
+              <div className="relative aspect-[16/9] overflow-hidden rounded-sm bg-white/5 backdrop-blur-md border border-white/20 shadow-[0_0_15px_rgba(255,255,255,0.05)]">
                 <motion.img
                   src={work.image}
                   alt={work.title}

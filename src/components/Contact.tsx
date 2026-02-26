@@ -4,6 +4,13 @@ import { Github, Linkedin, Twitter } from 'lucide-react';
 export default function Contact() {
   return (
     <section id="contact" className="relative z-20 pt-32 pb-12 overflow-hidden">
+      {/* Curved Divider */}
+      <div className="absolute top-0 left-0 w-full overflow-hidden leading-none">
+        <svg className="relative block w-full h-[100px]" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+          <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V0H0V27.35A600.21,600.21,0,0,0,321.39,56.44Z" className="fill-black/40"></path>
+        </svg>
+      </div>
+
       <div className="max-w-4xl mx-auto px-6 pt-20">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -67,7 +74,7 @@ export default function Contact() {
             </label>
           </div>
 
-          <button className="self-start relative overflow-hidden group px-8 py-4 rounded-full glass border border-white/20 hover:border-white/50 transition-colors duration-300">
+          <button className="self-start relative overflow-hidden group px-8 py-4 rounded-full bg-white/5 backdrop-blur-md border border-white/20 hover:border-white/50 transition-colors duration-300">
             <span className="relative z-10 font-medium tracking-wide">Send Message</span>
             <div className="absolute inset-0 bg-white/10 translate-y-full group-hover:translate-y-0 transition-transform duration-300 ease-[cubic-bezier(0.16,1,0.3,1)]" />
           </button>
