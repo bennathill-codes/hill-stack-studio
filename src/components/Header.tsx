@@ -28,13 +28,13 @@ export default function Header() {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
-            className="flex items-center justify-between w-full text-[1vw] font-semibold tracking-widest text-white/40 mix-blend-overlay uppercase"
+            className="flex items-center justify-between w-full text-[1vw] font-semibold tracking-widest uppercase"
           >
             {['About', 'Services', 'Work'].map((item) => (
               <a
                 key={item}
                 href={`#${item.toLowerCase()}`}
-                className="relative py-1 after:content-[''] after:absolute after:bottom-0 after:left-0 after:w-full after:h-[1px] after:bg-white/70 after:origin-center after:scale-x-0 hover:after:scale-x-100 after:transition-transform after:duration-500 after:ease-[cubic-bezier(0.16,1,0.3,1)]"
+                className="px-4 py-2 md:px-[1.2vw] md:py-[0.4vw] rounded-full border border-transparent hover:border-white/20 hover:bg-white/5 hover:backdrop-blur-md text-gray-300 hover:text-white transition-all duration-300 hover:shadow-[0_0_15px_rgba(255,255,255,0.05)]"
               >
                 {item}
               </a>

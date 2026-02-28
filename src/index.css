@@ -9,6 +9,19 @@
   --color-bg-dark: #111111;
   --color-bg-light: #8a8a8a;
   --color-accent: #ffffff;
+  --animate-float: float 6s ease-in-out infinite;
+
+  @keyframes float {
+
+    0%,
+    100% {
+      transform: translateY(-15px);
+    }
+
+    50% {
+      transform: translateY(15px);
+    }
+  }
 }
 
 @layer base {
@@ -16,7 +29,7 @@
     @apply bg-[#111111] text-white antialiased overflow-x-hidden;
     font-family: "Inter", sans-serif;
   }
-  
+
   ::selection {
     @apply bg-white/20 text-white;
   }
@@ -26,12 +39,15 @@
   .glass {
     @apply bg-[#1a1a1a] border border-white/[0.05];
   }
+
   .glass-panel {
     @apply bg-black/40 backdrop-blur-2xl border border-white/[0.05];
   }
+
   .text-glow {
     text-shadow: 0 0 30px rgba(255, 255, 255, 0.2);
   }
+
   .text-gradient {
     @apply bg-clip-text text-transparent bg-gradient-to-b from-[#f0f0f0] to-[#5a5a5a];
   }

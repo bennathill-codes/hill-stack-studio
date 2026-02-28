@@ -31,7 +31,7 @@ export default function Hero() {
             <span className=" bg-gradient-to-b from-white/100 to-white/0 bg-clip-text text-transparent mix-blend-overlay drop-shadow-2xl">PRESENCE</span>
             <div className="absolute top-[100%] right-0 flex items-center mt-4">
               <span
-                className="text-[3vw] font-mono font-medium text-white/70 uppercase tracking-[0.2em] select-none pointer-events-none w-[12ch] text-left inline-block"
+                className="text-[3vw] font-mono font-medium text-gray-300 uppercase tracking-[0.2em] select-none pointer-events-none w-[12ch] text-left inline-block"
               >
                 <Typewriter
                   words={['DEFINED', 'DESIGNED', 'DEVELOPED', 'DEPLOYED']}
@@ -54,7 +54,7 @@ export default function Hero() {
         transition={{ duration: 1, delay: 0.5 }}
         className="w-full px-6 md:px-12 pb-8 flex flex-col md:flex-row justify-between items-end gap-8 relative z-10"
       >
-        <div className="text-[2vw] md:text-[0.8vw] font-mono text-white/70 uppercase tracking-widest leading-relaxed">
+        <div className="text-[2vw] md:text-[0.8vw] font-mono text-gray-300 uppercase tracking-widest leading-relaxed">
           <p>ENGINEERED BY BENJAMIN HILL</p>
           <p className="flex items-center gap-[1vw] md:gap-[0.5vw]">
             US <Globe className="w-[2.5vw] h-[2.5vw] md:w-[1vw] md:h-[1vw]" /> {new Date().toLocaleTimeString('en-US', { hour: '2-digit', minute: '2-digit', timeZoneName: 'short' })}
