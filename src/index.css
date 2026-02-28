@@ -9,7 +9,7 @@
   --color-bg-dark: #111111;
   --color-bg-light: #8a8a8a;
   --color-accent: #ffffff;
-  --animate-float: float 6s ease-in-out infinite;
+  --animate-float: float 8s ease-in-out infinite;
 
   @keyframes float {
 

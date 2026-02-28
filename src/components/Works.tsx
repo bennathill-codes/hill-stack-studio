@@ -32,14 +32,6 @@ const works = [
 export default function Works() {
   return (
     <section id="works" className="py-12 px-4 md:px-8 relative z-20">
-      <svg className="hidden">
-        <filter id="liquid-hover">
-          <feTurbulence type="fractalNoise" baseFrequency="0.015 0.05" numOctaves="1" result="warp">
-            <animate attributeName="baseFrequency" dur="5s" values="0.015 0.05;0.02 0.06;0.015 0.05" repeatCount="indefinite" />
-          </feTurbulence>
-          <feDisplacementMap xChannelSelector="R" yChannelSelector="G" scale="20" in="SourceGraphic" in2="warp" />
-        </filter>
-      </svg>
       <GlassPanel>
         <div className="px-6 md:px-16">
           <motion.div
@@ -67,38 +59,24 @@ export default function Works() {
                 className={`group relative block w-full md:w-[70%] ${work.align === 'right' ? 'md:ml-auto' : ''}`}
               >
                 <div className="relative aspect-[16/9] overflow-hidden rounded-sm bg-white/5 backdrop-blur-md border border-white/20 shadow-[0_0_15px_rgba(255,255,255,0.05)]">
-                  <motion.img
+                  <img
                     src={work.image}
                     alt={work.title}
                     referrerPolicy="no-referrer"
-                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
-                  />
-
-                  {/* Liquid Hover Image */}
-                  <motion.img
-                    src={work.image}
-                    alt={`${work.title} liquid effect`}
-                    referrerPolicy="no-referrer"
-                    className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover:opacity-100 transition-all duration-1000 ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-105"
-                    style={{ filter: 'url(#liquid-hover)' }}
+                    className="absolute inset-0 w-full h-full object-cover"
                   />
 
                   {/* Dark Overlay */}
-                  <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex flex-col justify-end p-8 md:p-12">
-                    <motion.div
-                      initial={{ y: 20, opacity: 0 }}
-                      whileHover={{ y: 0, opacity: 1 }}
-                      transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                      className="translate-y-4 group-hover:translate-y-0 transition-transform duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]"
-                    >
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-8 md:p-12">
+                    <div>
                       <div className="flex items-center justify-between mb-2">
                         <h3 className="text-[6vw] md:text-[2.5vw] font-bold text-white tracking-tight">{work.title}</h3>
-                        <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/10 flex items-center justify-center backdrop-blur-md border border-white/20 group-hover:bg-white group-hover:text-black transition-colors duration-300">
-                          <ArrowUpRight className="w-5 h-5 md:w-6 md:h-6" />
+                        <div className="w-10 h-10 md:w-12 md:h-12 rounded-full bg-white/10 flex items-center justify-center backdrop-blur-md border border-white/20">
+                          <ArrowUpRight className="w-5 h-5 md:w-6 md:h-6 text-white" />
                         </div>
                       </div>
                       <p className="text-white/70 font-mono text-[3vw] md:text-[0.9vw] tracking-wide">{work.tech}</p>
-                    </motion.div>
+                    </div>
                   </div>
                 </div>
               </motion.a>
